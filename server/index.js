@@ -16,10 +16,22 @@ server.use(function (req, res, next) {
   })
 })
 
+server.post('/songs', (request, response) => {
+  const body = JSON.parse(request.body)
+  Song.create(body).then(song => {
+    response.send(body)
+    response.end()
+  })
+  // console.log(body);
+  // response.send(body)
+  // response.end()
+})
+
+
 server.get('/songs', (request, response) => {
   Song.findAll().then(function(songs) {
-	response.send(songs)
-	response.end()
+  	response.send(songs)
+  	response.end()
   })
 })
 
